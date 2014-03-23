@@ -1,0 +1,39 @@
+<head>
+  <title>Shopstyle Api Example App</title>
+</head>
+
+<body>
+  {{> header}}
+  <div class="container">
+    {{renderPage}}
+  </div>
+</body>
+
+<template name="header">
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target="#nav-collapse-01"></button>
+        <a class="brand" href="./index.html">Shopstyle Api Example App</a>
+
+        <div class="span3">
+          <input type="text" value="" id="search" placeholder="Search" class="span3" style="margin: 5px 0px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="home">
+  <h1>Hello World!</h1>
+  {{greeting}}
+</template>
+
+<template name="product">
+  {{#if product}}
+    <h1>{{product.name}} - {{product.priceLabel}}</h1>
+    <img src="{{product.image.sizes.IPhone.url}}">
+  {{/if}}
+</template>
+
+
