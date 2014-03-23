@@ -41,11 +41,9 @@ if (Meteor.isServer) {
 }
 
 Meteor.Router.add({
-  '/': 'home',
+  '/': 'search',
 
   '/search': function() {
-    Session.set("products", null);
-
     var options = Session.get("searchOptions") || {};
     if (options !== undefined) {
       // get the initial products
@@ -56,7 +54,7 @@ Meteor.Router.add({
         }
 
         console.log(result);
-        Session.set("products", result.products);
+        searchResults.set(result.products);
       });
 
       //get the product histogram
@@ -76,21 +74,23 @@ Meteor.Router.add({
     return 'search';
   },
 
-  '/product/:id' : { as: 'searchProduct', to: function(id) {
-    Session.set("product", null);
-    Session.set('productId', id);
+  '/product/:id' : {
+    as: 'searchProduct',
+    to: function(id) {
+      Session.set("product", null);
+      Session.set('productId', id);
 
-    Meteor.call('shopstyleProductFetch', {'id' : id}, function(error, result) {
-      if (error) {
-        alert('Error Code: ' + error.error + '\nError Reason: ' + error.reason);
-        return;
-      }
+      Meteor.call('shopstyleProductFetch', {'id' : id}, function(error, result) {
+        if (error) {
+          alert('Error Code: ' + error.error + '\nError Reason: ' + error.reason);
+          return;
+        }
 
-      console.log(result);
-      Session.set("product", result);
-    });
+        console.log(result);
+        Session.set("product", result);
+      });
 
-    return 'product';
+      return 'product';
     }
   }
 });

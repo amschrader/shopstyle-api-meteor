@@ -19,21 +19,31 @@ if (Meteor.isClient) {
         }
 
         console.log(result);
-        var products = Session.get("products").concat(result.products);
-
-        Session.set("products", products);
+        searchResults.append(result.products);
       });
     }
   });
 
-  Template.search.products = function () {
-    return Session.get("products");
+  searchResults = {
+    products: [],
+    dep: new Deps.Dependency,
+    get: function () {
+      this.dep.depend();
+      return this.products;
+    },
+    set: function (newProducts) {
+      this.products = newProducts;
+      this.dep.changed();
+      return this.products;
+    },
+    append: function (newProducts) {
+      this.products = this.products.concat(newProducts);
+      this.dep.changed();
+      return this.products;
+    }
   };
 
-  Handlebars.registerHelper('productUrl', function(object) {
-    var product = ({id :object.id });
-    return new Handlebars.SafeString(
-      Meteor.Router.searchProductPath(product)
-    );
-  });
+  Template.search.products = function() {
+    return searchResults.get();
+  };
 }
