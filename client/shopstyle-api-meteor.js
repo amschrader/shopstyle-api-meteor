@@ -20,10 +20,11 @@ if (Meteor.isClient) {
           "fts": searchTerm,
           "offset": 0,
           "limit" : 20,
-          "filters": "Brand,Size,Color,Price,Discount"
+          "filters": "Brand,Size,Color,Price,Discount",
+          "initial": true
         };
 
-        Session.set("searchOptions", options);
+        Session.set("queryState", options);
         Meteor.Router.to('/search');
       }
     }
@@ -44,33 +45,13 @@ Meteor.Router.add({
   '/': 'search',
 
   '/search': function() {
-    var options = Session.get("searchOptions") || {};
-    if (options !== undefined) {
-      // get the initial products
-      Meteor.call('shopstyleProductSearch', options, function(error, result) {
-        if (error) {
-          alert('Error Code: ' + error.error + '\nError Reason: ' + error.reason);
-          return;
-        }
-
-        console.log(result);
-        searchResults.set(result.products);
-      });
-
-      //get the product histogram
-      Meteor.call('shopstyleProductHistogram', options, function(error, result) {
-        if (error) {
-          alert('Error Code: ' + error.error + '\nError Reason: ' + error.reason);
-          return;
-        }
-
-        console.log(result);
-        Session.set("filterHistogram", result);
-      });
-    } else {
-      return "noresults";
-    }
-
+    var options = Session.get("queryState") || {
+        "offset": 0,
+        "limit" : 20,
+        "filters": "Brand,Size,Color,Price,Discount",
+        "initial": true
+      };
+    Session.set("queryState", options);
     return 'search';
   },
 
@@ -94,13 +75,3 @@ Meteor.Router.add({
     }
   }
 });
-
-
-
-
-
-
-
-
-
-

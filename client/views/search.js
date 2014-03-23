@@ -6,12 +6,18 @@ if (Meteor.isClient) {
   Template.search.events({
     'click #load-more' : function (event) {
       event.preventDefault();
-      var options = Session.get("searchOptions") || {};
+      var options = Session.get("queryState") || {};
 
       options.offset = options.offset ? options.offset + 20 : 20;
+      options.initial = false;
 
-      Session.set("searchOptions", options);
+      Session.set("queryState", options);
+    }
+  });
 
+  Deps.autorun(function (c) {
+    if (Session.get("queryState") !== undefined) {
+      var options = Session.get("queryState");
       Meteor.call('shopstyleProductSearch', options, function(error, result) {
         if (error) {
           alert('Error Code: ' + error.error + '\nError Reason: ' + error.reason);
@@ -19,7 +25,11 @@ if (Meteor.isClient) {
         }
 
         console.log(result);
-        searchResults.append(result.products);
+        if (options.initial === true) {
+          searchResults.set(result.products);
+        } else {
+          searchResults.append(result.products);
+        }
       });
     }
   });
