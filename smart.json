@@ -1,9 +1,6 @@
 {
   "packages": {
-	"router": {},
-    "meteor-flat-ui" : { 
-    "branch" : "master",
-    "git" : "https://github.com/electricjesus/meteor-flat-ui.git"
-    }
+    "router": {},
+    "bootstrap3-sass": {}
   }
 }

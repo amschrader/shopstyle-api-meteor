@@ -1,5 +1,6 @@
 <head>
   <title>Shopstyle Api Example App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
@@ -10,16 +11,25 @@
 </body>
 
 <template name="header">
-  <div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container">
-        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target="#nav-collapse-01"></button>
-        <a class="brand" href="./index.html">Shopstyle Api Example App</a>
-
-        <div class="span3">
-          <input type="text" value="" id="search" placeholder="Search" class="span3" style="margin: 5px 0px;">
-        </div>
+  <div class="navbar navbar-static-top ss-navbar">
+    <div class="container">
+      <div class="navbar-header">
+        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="../" class="navbar-brand">Shopstyle Api Example App</a>
       </div>
+
+      <nav class="collapse navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav">
+          <li>
+            <input type="text" value="" id="search" placeholder="Search" class="form-control" style="margin: 5px 0px;">
+          </li>
+        </ul>
+      </nav>
     </div>
   </div>
 </template>
@@ -35,5 +45,3 @@
     <img src="{{product.image.sizes.IPhone.url}}">
   {{/if}}
 </template>
-
-

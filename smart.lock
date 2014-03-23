@@ -3,10 +3,7 @@
   "dependencies": {
     "basePackages": {
       "router": {},
-      "meteor-flat-ui": {
-        "git": "https://github.com/electricjesus/meteor-flat-ui.git",
-        "branch": "master"
-      }
+      "bootstrap3-sass": {}
     },
     "packages": {
       "router": {
@@ -14,10 +11,10 @@
         "tag": "v0.5.4.1",
         "commit": "d00e380dda2184b70e909fc4a0fb5358d602c586"
       },
-      "meteor-flat-ui": {
-        "git": "https://github.com/electricjesus/meteor-flat-ui.git",
-        "branch": "master",
-        "commit": "47acb5857ac25b1d42bdbc7e99e7cdba9340b08b"
+      "bootstrap3-sass": {
+        "git": "https://github.com/reywood/meteor-bootstrap3-sass.git",
+        "tag": "v3.1.1-2",
+        "commit": "39e1431d0692a9d09e4e6865e5a52263a32dc854"
       },
       "page-js-ie-support": {
         "git": "https://github.com/tmeasday/meteor-page-js-ie-support.git",
@@ -28,6 +25,11 @@
         "git": "https://github.com/tmeasday/meteor-HTML5-History-API.git",
         "tag": "v4.0.0",
         "commit": "dc4965f1424cfca625ec3fbea17eace03f8e32c5"
+      },
+      "scss": {
+        "git": "https://github.com/fourseven/meteor-scss.git",
+        "tag": "v0.8.3",
+        "commit": "84fa8b09766e85a9e85b5606903f4222b7dd7605"
       }
     }
   }

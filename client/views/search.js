@@ -6,11 +6,11 @@ if (Meteor.isClient) {
   Template.search.events({
     'click #load-more' : function (event) {
       event.preventDefault();
-      var options = Session.get("serachOptions") || {};
+      var options = Session.get("searchOptions") || {};
 
       options.offset = options.offset ? options.offset + 20 : 20;
 
-      Session.set("serachOptions", options);
+      Session.set("searchOptions", options);
 
       Meteor.call('shopstyleProductSearch', options, function(error, result) {
         if (error) {

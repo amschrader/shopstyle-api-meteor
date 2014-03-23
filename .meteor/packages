@@ -9,5 +9,5 @@ insecure
 preserve-inputs
 router
 http
-meteor-flat-ui
 infinite-scroll
+bootstrap3-sass
