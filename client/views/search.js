@@ -1,4 +1,11 @@
 if (Meteor.isClient) {
+  defaultQueryParameters = {
+    "offset": 0,
+    "limit": 20,
+    "filters": "Brand,Size,Color,Price,Discount",
+    "initial": true
+  };
+
   Template.search.searchTerms = function () {
     return Session.get("fts");
   };

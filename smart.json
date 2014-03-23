@@ -1,6 +1,7 @@
 {
   "packages": {
     "router": {},
-    "bootstrap3-sass": {}
+    "bootstrap3-sass": {},
+    "lodash": {}
   }
 }

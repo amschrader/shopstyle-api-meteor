@@ -11,3 +11,4 @@ router
 http
 infinite-scroll
 bootstrap3-sass
+lodash

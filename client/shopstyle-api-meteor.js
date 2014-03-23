@@ -16,14 +16,9 @@ if (Meteor.isClient) {
       if (event.keyCode == 13) {
         var searchTerm = $("#search").val();
         //create the initial search options with defaults
-        var options = {
-          "fts": searchTerm,
-          "offset": 0,
-          "limit" : 20,
-          "filters": "Brand,Size,Color,Price,Discount",
-          "initial": true
-        };
-
+        var options = _.extend(defaultQueryParameters, {
+          "fts": searchTerm
+        });
         Session.set("queryState", options);
         Meteor.Router.to('/search');
       }
@@ -45,12 +40,7 @@ Meteor.Router.add({
   '/': 'search',
 
   '/search': function() {
-    var options = Session.get("queryState") || {
-        "offset": 0,
-        "limit" : 20,
-        "filters": "Brand,Size,Color,Price,Discount",
-        "initial": true
-      };
+    var options = Session.get("queryState") || defaultQueryParameters;
     Session.set("queryState", options);
     return 'search';
   },
