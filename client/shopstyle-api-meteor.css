@@ -5016,3 +5016,6 @@ body {
   display: block;
   margin: 40px 0;
   text-align: center; }
+
+#search-results {
+  padding-top: 40px; }

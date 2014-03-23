@@ -37,7 +37,10 @@ if (Meteor.isServer) {
 }
 
 Meteor.Router.add({
-  '/': 'search',
+  '/': function() {
+    Session.set("queryState", defaultQueryParameters);
+    return 'search';
+  },
 
   '/search': function() {
     var options = Session.get("queryState") || defaultQueryParameters;

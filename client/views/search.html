@@ -1,26 +1,28 @@
 <template name="search">
-	{{#if searchTerms}}
-		<h1>{{searchTerms}}</h1>
-	{{/if}}
-	{{#if products}}
-		<div id="products">
-		{{#each products}}
-			<div class="product-cell">
-				<div class="image"><a href="{{clickUrl}}" target="_blank" rel="nofollow"><img src="{{image.sizes.IPhone.url}}"></a></div>
-				<span><a href="{{{productUrl this}}}">{{name}}</a> - {{priceLabel}}</span>
-			</div>
-		{{/each}}
-		</div>
-		<div class="load-more"><a href="#" id="load-more" class="btn btn-large btn-block btn-primary">load more</a><div>
-	{{/if}}
+  <div id="search-results">
+    {{#if searchTerms}}
+      <h1>{{searchTerms}}</h1>
+    {{/if}}
+    {{#if products}}
+      <div id="products">
+        {{#each products}}
+          <div class="product-cell">
+            <div class="image"><a href="{{clickUrl}}" target="_blank" rel="nofollow"><img src="{{image.sizes.IPhone.url}}"></a></div>
+            <span><a href="{{{productUrl this}}}">{{name}}</a> - {{priceLabel}}</span>
+          </div>
+        {{/each}}
+      </div>
+      <div class="load-more"><a href="#" id="load-more" class="btn btn-large btn-block btn-primary">load more</a><div>
+    {{/if}}
+  </div>
 </template>
 
 <template name="noresults">
-	<span>Whoops... there's nothing here</span>
+  <span>Whoops... there's nothing here</span>
 </template>
 
 <template name="filters">
-	<div id="filters">
-		
-	</div>
+  <div id="filters">
+
+  </div>
 </template>
