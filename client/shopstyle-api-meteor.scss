@@ -15,8 +15,8 @@ body {
 }
 
 .product-cell {
-  width: 300px;
-  height: 420px;
+  width: 200px;
+  height: 270px;
   display: inline-block;
   vertical-align: top;
 }
@@ -27,7 +27,7 @@ body {
 }
 
 .product-cell .image {
-  height: 360px;
+  height: 205px;
   padding-bottom: 10px;
 }
 
@@ -39,4 +39,29 @@ body {
 
 #search-results {
   padding-top: 40px;
+  margin-left: 240px;
+}
+
+#filters {
+  border-right: 2px solid $brand-primary;
+  position: fixed;
+  left: 0;
+  background: white;
+  opacity: .8;
+}
+
+.filter-title {
+  border-bottom: 2px solid $brand-primary;
+  width: 200px;
+  margin: 10px;
+}
+
+.filter-contents {
+  @extend .filter-title;
+  max-height: 200px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  list-style: none;
+  display: inline-block;
+  display: none;
 }

@@ -2,7 +2,6 @@ if (Meteor.isClient) {
   defaultQueryParameters = {
     "offset": 0,
     "limit": 20,
-    "filters": "Brand,Size,Color,Price,Discount",
     "initial": true
   };
 
@@ -13,7 +12,16 @@ if (Meteor.isClient) {
   Template.search.events({
     'click #load-more' : function (event) {
       event.preventDefault();
-      var options = Session.get("queryState") || {};
+      var options = Session.get("queryState") || defaultQueryParameters;
+
+      options.offset = options.offset ? options.offset + 20 : 20;
+      options.initial = false;
+
+      Session.set("queryState", options);
+    },
+    'click #filters .filter' : function (event) {
+      event.preventDefault();
+      var options = Session.get("queryState") || defaultQueryParameters;
 
       options.offset = options.offset ? options.offset + 20 : 20;
       options.initial = false;
@@ -37,6 +45,24 @@ if (Meteor.isClient) {
         } else {
           searchResults.append(result.products);
         }
+      });
+
+      var hOptions = _.extend(options, {
+        'filters': 'Brand,Retailer,Size,Color,Price,Discount'
+      });
+      Meteor.call('shopstyleProductHistogram', hOptions, function(error, result) {
+        if (error) {
+          alert('Error Code: ' + error.error + '\nError Reason: ' + error.reason);
+          return;
+        }
+
+        console.log(result);
+        Session.set("brandHistogram", result.brandHistogram);
+        Session.set("retailerHistogram", result.retailerHistogram);
+        Session.set("sizeHistogram", result.sizeHistogram);
+        Session.set("colorHistogram", result.colorHistogram);
+        Session.set("priceHistogram", result.priceHistogram);
+        Session.set("discountHistogram", result.discountHistogram);
       });
     }
   });

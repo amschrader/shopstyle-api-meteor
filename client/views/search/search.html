@@ -1,4 +1,5 @@
 <template name="search">
+  {{> filters}}
   <div id="search-results">
     {{#if searchTerms}}
       <h1>{{searchTerms}}</h1>
@@ -7,7 +8,7 @@
       <div id="products">
         {{#each products}}
           <div class="product-cell">
-            <div class="image"><a href="{{clickUrl}}" target="_blank" rel="nofollow"><img src="{{image.sizes.IPhone.url}}"></a></div>
+            <div class="image"><a href="{{clickUrl}}" target="_blank" rel="nofollow"><img src="{{image.sizes.Large.url}}"></a></div>
             <span><a href="{{{productUrl this}}}">{{name}}</a> - {{priceLabel}}</span>
           </div>
         {{/each}}
@@ -19,10 +20,4 @@
 
 <template name="noresults">
   <span>Whoops... there's nothing here</span>
-</template>
-
-<template name="filters">
-  <div id="filters">
-
-  </div>
 </template>
