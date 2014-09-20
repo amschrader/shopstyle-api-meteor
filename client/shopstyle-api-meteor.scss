@@ -101,7 +101,6 @@ body {
 }
 
 #filters {
-  border-right: 2px solid $brand-primary;
   position: fixed;
   left: 0;
   background: white;
@@ -109,9 +108,11 @@ body {
 }
 
 .filter-title {
-  border-bottom: 2px solid $brand-primary;
+  background: $gray-lightest;
+  border-bottom: 2px solid darken($gray-lightest, 10%);
   width: 200px;
-  margin: 10px;
+  padding: 10px;
+  color: $gray-dark;
 }
 
 .filter-contents {

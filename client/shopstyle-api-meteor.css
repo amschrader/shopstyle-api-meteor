@@ -5051,16 +5051,17 @@ body {
   margin-left: 240px; }
 
 #filters {
-  border-right: 2px solid #6699ff;
   position: fixed;
   left: 0;
   background: white;
   opacity: .8; }
 
 .filter-title, .filter-contents {
-  border-bottom: 2px solid #6699ff;
+  background: #f1f5ff;
+  border-bottom: 2px solid #bed1ff;
   width: 200px;
-  margin: 10px; }
+  padding: 10px;
+  color: #3e434c; }
 
 .filter-contents {
   max-height: 200px;
