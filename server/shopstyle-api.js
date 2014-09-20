@@ -34,6 +34,17 @@ Meteor.methods({
     }
   },
 
+  shopstyleRelatedProductFetch: function(options) {
+    var endpoint = Meteor.call('shopstyleEndpoints').product + options.id + '/related';
+    var res = Meteor.call('shopstyleFetch', endpoint, options);
+
+    if (res.products) {
+      return res;
+    } else {
+      return new Meteor.Error(res);
+    }
+  },
+
   shopstyleProductSearch: function(options) {
     var endpoint = Meteor.call('shopstyleEndpoints').productSearch;
     var res = Meteor.call('shopstyleFetch', endpoint, options);

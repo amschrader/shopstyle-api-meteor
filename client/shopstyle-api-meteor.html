@@ -5,7 +5,7 @@
 
 <body>
   {{> header}}
-  <div>
+  <div class="container">
     {{renderPage}}
   </div>
 </body>
@@ -39,9 +39,3 @@
   {{greeting}}
 </template>
 
-<template name="product">
-  {{#if product}}
-    <h1>{{product.name}} - {{product.priceLabel}}</h1>
-    <img src="{{product.image.sizes.IPhone.url}}">
-  {{/if}}
-</template>

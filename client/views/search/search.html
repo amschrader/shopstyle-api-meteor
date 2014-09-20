@@ -9,7 +9,18 @@
         {{#each products}}
           <div class="product-cell">
             <div class="image"><a href="{{clickUrl}}" target="_blank" rel="nofollow"><img src="{{image.sizes.Large.url}}"></a></div>
-            <span><a href="{{{productUrl this}}}">{{name}}</a> - {{priceLabel}}</span>
+            <a href="{{{productUrl this}}}">
+              {{#if brand}}
+                <span class="product-title brand">{{brand.name}}</span>
+              {{^}}
+                <span class="product-title brand">{{retailer.name}}</span>
+              {{/if}}
+              <span class="product-title title">{{unbrandedName}}</span></a>
+            {{#if salePriceLabel}}
+              <span class="product-price sale">{{salePriceLabel}}</span><span class="product-price no-sale">{{priceLabel}}</span>
+            {{^}}
+              <span class="product-price">{{priceLabel}}</span>
+            {{/if}}
           </div>
         {{/each}}
       </div>

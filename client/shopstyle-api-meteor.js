@@ -53,6 +53,7 @@ Meteor.Router.add({
     to: function(id) {
       Session.set("product", null);
       Session.set('productId', id);
+       Session.set("relatedProducts", []);
 
       Meteor.call('shopstyleProductFetch', {'id' : id}, function(error, result) {
         if (error) {
@@ -62,6 +63,15 @@ Meteor.Router.add({
 
         console.log(result);
         Session.set("product", result);
+
+        Meteor.call('shopstyleRelatedProductFetch', {'id' : id}, function(error, result) {
+          if (error) {
+            alert('Error Code: ' + error.error + '\nError Reason: ' + error.reason);
+            return;
+          }
+          console.log(result);
+          Session.set("relatedProducts", result.products);
+        });
       });
 
       return 'product';
