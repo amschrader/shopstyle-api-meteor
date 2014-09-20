@@ -1,11 +1,29 @@
 if (Meteor.isClient) {
   defaultFilterState = {
-    'brand': [],
-    'retailer': [],
-    'price': [],
-    'discount': [],
-    'color': [],
-    'size': []
+    'brand': {
+      'shortName': 'b',
+      'activeFilters': []
+    },
+    'retailer': {
+      'shortName': 'r',
+      'activeFilters': []
+    },
+    'price': {
+      'shortName': 'p',
+      'activeFilters': []
+    },
+    'discount': {
+      'shortName': 'd',
+      'activeFilters': []
+    },
+    'color': {
+      'shortName': 'c',
+      'activeFilters': []
+    },
+    'size': {
+      'shortName': 's',
+      'activeFilters': []
+    },
   };
 
   filterState = {
@@ -18,26 +36,26 @@ if (Meteor.isClient) {
     },
     add: function (filterGroup, filterId) {
       // if group is not defined, define it.
-      this.filters.filterGroup = this.filters.filterGroup || [];
-      this.filters.filterGroup.push(filterId);
+      group = this.filters[filterGroup] || {};
+      group.activeFilters.push(filterId);
       this.dep.changed();
 
-      // hack fix me
+      // can only apply one filter at a time.
       var options = _.extend(Session.get("queryState"), {
-        "fl": 'r'+filterId
+        "fl": group.shortName + filterId
       });
       Session.set("queryState", options);
       return this.filters;
     },
     remove: function (filterGroup, filterId) {
-      this.filters.filterGroup = this.filters.filterGroup || [];
-      _.pull(this.filters.filterGroup, filterId);
+      group = this.filters[filterGroup] || {};
+      _.pull(group.activeFilters, filterId);
       this.dep.changed();
       return this.filters;
     },
     clear: function (filterGroup) {
       if (filterGroup !== undefined) {
-        this.filters.filterGroup = [];
+        this.filters.filterGroup.activeFilters = [];
       } else {
         this.filters = _.clone(defaultFilterState);
       }
