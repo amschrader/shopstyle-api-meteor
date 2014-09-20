@@ -5079,3 +5079,24 @@ body {
   background: #f1f5ff; }
   .ss-navbar a {
     color: #3e434c; }
+
+#search-box {
+  margin-left: 30px;
+  min-width: 300px; }
+  #search-box img {
+    display: inline-block;
+    top: 13px;
+    position: absolute;
+    height: 20px;
+    width: 20px; }
+  #search-box input {
+    box-shadow: none;
+    border: 0px;
+    background: #f1f5ff;
+    text-indent: 20px;
+    border-color: #6699ff;
+    border-radius: 0px;
+    font-size: 16px;
+    font-style: italic; }
+    #search-box input:hover, #search-box input:active, #search-box input:focus {
+      border-bottom: 2px solid #6699ff; }
