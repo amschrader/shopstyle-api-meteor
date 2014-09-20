@@ -1,0 +1,46 @@
+.header {
+
+}
+
+.ss-navbar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  color: $gray-dark;
+  background: $gray-lightest;
+
+  a {
+    color: $gray-dark;
+  }
+}
+
+#search-box {
+  margin-left: 30px;
+  min-width: 300px;
+
+  img {
+    display: inline-block;
+    top: 13px;
+    position: absolute;
+    height: 20px;
+    width: 20px;
+  }
+
+  input {
+    box-shadow: none;
+    border: 0px;
+    background: $gray-lightest;
+    text-indent: 20px;
+    border-color: $brand-primary;
+    border-radius: 0px;
+    font-size: 16px;
+    font-style: italic;
+
+    &:hover,
+    &:active,
+    &:focus {
+      border-bottom: 2px solid $brand-primary;
+    }
+  }
+}

@@ -1,0 +1,48 @@
+<template name="product">
+  {{#if product}}
+  <div class="row product-page">
+    <div class="col-md-4 col-md-push-2">
+      <a href="{{{product.clickUrl}}}"><img src="{{product.image.sizes.IPhone.url}}"></a>
+    </div>
+    <div class="col-md-4 col-md-push-2">
+      <a href="{{{product.clickUrl}}}">
+        {{#if product.brand}}
+          <span class="product-title brand">{{product.brand.name}}</span>
+        {{^}}
+          <span class="product-title brand">{{product.retailer.name}}</span>
+        {{/if}}
+        <span class="product-title title">{{product.unbrandedName}}</span>
+      </a>
+
+      {{#if product.salePriceLabel}}
+        <span class="product-price sale">{{product.salePriceLabel}}</span><span class="product-price no-sale">{{product.priceLabel}}</span>
+      {{^}}
+        <span class="product-price">{{product.priceLabel}}</span>
+      {{/if}}
+      <div class="product-description">
+        <span>{{{product.description}}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="row related-products">
+    <div class="section-title">You May Also Like</div>
+    {{#each relatedProducts}}
+      <div class="product-cell">
+        <div class="image"><a href="{{clickUrl}}" target="_blank" rel="nofollow"><img src="{{image.sizes.Large.url}}"></a></div>
+        <a href="{{{productUrl this}}}">
+          {{#if brand}}
+            <span class="product-title brand">{{brand.name}}</span>
+          {{^}}
+            <span class="product-title brand">{{retailer.name}}</span>
+          {{/if}}
+          <span class="product-title title">{{unbrandedName}}</span></a>
+        {{#if salePriceLabel}}
+          <span class="product-price sale">{{salePriceLabel}}</span><span class="product-price no-sale">{{priceLabel}}</span>
+        {{^}}
+          <span class="product-price">{{priceLabel}}</span>
+        {{/if}}
+      </div>
+    {{/each}}
+  </div>
+  {{/if}}
+</template>
