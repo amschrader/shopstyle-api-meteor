@@ -48,6 +48,22 @@ if (Meteor.isClient) {
     return Session.get("brandHistogram");
   };
 
+  Template.filters.retailerHistogram = function () {
+    return Session.get("retailerHistogram");
+  };
+
+  Template.filters.colorHistogram = function () {
+    return Session.get("colorHistogram");
+  };
+
+  Template.filters.priceHistogram = function () {
+    return Session.get("priceHistogram");
+  };
+
+  Template.filters.discountHistogram = function () {
+    return Session.get("discountHistogram");
+  };
+
   Template.filters.events({
     'click .filter-title' : function (event) {
       event.preventDefault();
