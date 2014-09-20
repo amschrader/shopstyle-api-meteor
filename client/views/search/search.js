@@ -18,15 +18,6 @@ if (Meteor.isClient) {
       options.initial = false;
 
       Session.set("queryState", options);
-    },
-    'click #filters .filter' : function (event) {
-      event.preventDefault();
-      var options = Session.get("queryState") || defaultQueryParameters;
-
-      options.offset = options.offset ? options.offset + 20 : 20;
-      options.initial = false;
-
-      Session.set("queryState", options);
     }
   });
 

@@ -1,48 +1,48 @@
 <template name="filters">
   <div id="filters">
-    <div class="filter-section">
+    <div class="filter-section" data-group="brand">
       <div class="filter-title">Brand</div>
       <div class="filter-contents">
         {{#each brandHistogram}}
-          <li>{{this.name}} ({{this.count}})</li>
+          <li data-id="{{this.id}}">{{this.name}} ({{this.count}})</li>
         {{/each}}
       </div>
     </div>
 
 
-    <div class="filter-section">
+    <div class="filter-section" data-group="retailer">
       <div class="filter-title">Retailer</div>
       <div class="filter-contents">
         {{#each retailerHistogram}}
-          <li>{{this.name}} ({{this.count}})</li>
+          <li data-id="{{this.id}}">{{this.name}} ({{this.count}})</li>
         {{/each}}
       </div>
     </div>
 
-    <div class="filter-section">
+    <div class="filter-section" data-group="price">
       <div class="filter-title">Price</div>
 
       <div class="filter-contents">
         {{#each priceHistogram}}
-          <li>{{this.name}} ({{this.count}})</li>
+          <li data-id="{{this.id}}">{{this.name}} ({{this.count}})</li>
         {{/each}}
       </div>
     </div>
 
-    <div class="filter-section">
+    <div class="filter-section" data-group="color">
       <div class="filter-title">Color</div>
       <div class="filter-contents">
         {{#each colorHistogram}}
-          <li>{{this.name}} ({{this.count}})</li>
+          <li data-id="{{this.id}}">{{this.name}} ({{this.count}})</li>
         {{/each}}
       </div>
     </div>
 
-    <div class="filter-section">
+    <div class="filter-section" data-group="discount">
       <div class="filter-title">Discount</div>
       <div class="filter-contents">
         {{#each discountHistogram}}
-          <li>{{this.name}} ({{this.count}})</li>
+          <li data-id="{{this.id}}">{{this.name}} ({{this.count}})</li>
         {{/each}}
       </div>
     </div>

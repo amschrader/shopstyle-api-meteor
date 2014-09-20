@@ -21,6 +21,12 @@ if (Meteor.isClient) {
       this.filters.filterGroup = this.filters.filterGroup || [];
       this.filters.filterGroup.push(filterId);
       this.dep.changed();
+
+      // hack fix me
+      var options = _.extend(Session.get("queryState"), {
+        "fl": 'r'+filterId
+      });
+      Session.set("queryState", options);
       return this.filters;
     },
     remove: function (filterGroup, filterId) {
@@ -68,6 +74,12 @@ if (Meteor.isClient) {
     'click .filter-title' : function (event) {
       event.preventDefault();
       jQuery(event.srcElement).siblings('.filter-contents').show();
+    },
+    'click .filter-contents li' : function (event) {
+      event.preventDefault();
+      filterId = jQuery(event.srcElement).data('id');
+      filterGroup = jQuery(event.srcElement).parents('.filter-section').data('group');
+      filterState.add(filterGroup , filterId);
     }
   });
 }
