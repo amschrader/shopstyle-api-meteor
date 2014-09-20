@@ -1,3 +1,28 @@
+// We do this manually so we can have multiple fl params on the url
+_generateApiUrl = function(url, options) {
+  for (var key in options) {
+    if (options.hasOwnProperty(key)) {
+      if (key.indexOf('fl') > -1) {
+        for (filter in options[key]) {
+          url = _addParam(url, key, options[key][filter]);
+        }
+      } else {
+        url = _addParam(url, key, options[key]);
+      }
+    }
+  }
+  return url;
+},
+
+_addParam = function(url, key, value) {
+  if (_.contains(url, '?')) {
+    url += '&' + key + '=' + value;
+  } else {
+    url += '?' + key + '=' + value;
+  }
+  return url;
+}
+
 Meteor.methods({
   shopstyleCredentials: function() {
     return {
@@ -73,11 +98,13 @@ Meteor.methods({
   shopstyleFetch: function(endpoint, options) {
     var apiUrl = 'http://api.shopstyle.com/api/v2' + endpoint;
     apiUrl += "?pid=" + Meteor.call('shopstyleCredentials').pid;
-    Meteor._debug(apiUrl + "\n");
 
     this.unblock();
 
-    var res = Meteor.http.get(apiUrl, {params: options});
+    var url = _generateApiUrl(apiUrl, options);
+    Meteor._debug(url + "\n");
+
+    var res = Meteor.http.get(url);
 
     if (res.statusCode === 200) {
       return res.data;

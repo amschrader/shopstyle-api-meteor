@@ -36,19 +36,29 @@ if (Meteor.isClient) {
     },
     add: function (filterGroup, filterId) {
       // if group is not defined, define it.
-      group = this.filters[filterGroup] || {};
+      var group = this.filters[filterGroup] || {};
       group.activeFilters.push(filterId);
       this.dep.changed();
 
+      var allFilters = [];
+      for (g in this.filters) {
+        var group = this.filters[g];
+        if (group.activeFilters.length > 0) {
+          for (idx in group.activeFilters) {
+            allFilters.push(group.shortName + group.activeFilters[idx]);
+          }
+        }
+      }
+
       // can only apply one filter at a time.
       var options = _.extend(Session.get("queryState"), {
-        "fl": group.shortName + filterId
+        "fl": allFilters
       });
       Session.set("queryState", options);
       return this.filters;
     },
     remove: function (filterGroup, filterId) {
-      group = this.filters[filterGroup] || {};
+      var group = this.filters[filterGroup] || {};
       _.pull(group.activeFilters, filterId);
       this.dep.changed();
       return this.filters;
