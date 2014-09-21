@@ -5047,19 +5047,15 @@ body {
   text-align: center; }
 
 #search-results {
-  padding-top: 40px;
-  margin-left: 240px; }
+  padding-top: 40px; }
 
 #filters {
-  position: fixed;
-  left: 0;
-  background: white;
-  opacity: .8; }
+  width: 100%;
+  margin-top: 20px; }
 
 .filter-title, .filter-contents {
   background: #f1f5ff;
   border-bottom: 2px solid #bed1ff;
-  width: 200px;
   padding: 10px;
   color: #3e434c; }
 

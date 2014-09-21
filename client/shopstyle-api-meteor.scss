@@ -97,20 +97,16 @@ body {
 
 #search-results {
   padding-top: 40px;
-  margin-left: 240px;
 }
 
 #filters {
-  position: fixed;
-  left: 0;
-  background: white;
-  opacity: .8;
+  width: 100%;
+  margin-top: 20px;
 }
 
 .filter-title {
   background: $gray-lightest;
   border-bottom: 2px solid darken($gray-lightest, 10%);
-  width: 200px;
   padding: 10px;
   color: $gray-dark;
 }

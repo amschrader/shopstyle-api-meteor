@@ -1,32 +1,37 @@
 <template name="search">
-  {{> filters}}
-  <div id="search-results">
-    {{#if searchTerms}}
-      <h1>{{searchTerms}}</h1>
-    {{/if}}
-    {{#if products}}
-      <div id="products">
-        {{#each products}}
-          <div class="product-cell">
-            <div class="image"><a href="{{clickUrl}}" target="_blank" rel="nofollow"><img src="{{image.sizes.Large.url}}"></a></div>
-            <a href="{{{productUrl this}}}">
-              {{#if brand}}
-                <span class="product-title brand">{{brand.name}}</span>
+  <div class="row">
+    <div class="col-md-3">
+      {{> filters}}
+    </div>
+    <div id="search-results" class="col-md-9">
+      {{#if searchTerms}}
+        <h1>{{searchTerms}}</h1>
+      {{/if}}
+      {{#if products}}
+        <div id="products" >
+          {{#each products}}
+            <div class="product-cell">
+              <div class="image"><a href="{{clickUrl}}" target="_blank" rel="nofollow"><img src="{{image.sizes.Large.url}}"></a></div>
+              <a href="{{{productUrl this}}}">
+                {{#if brand}}
+                  <span class="product-title brand">{{brand.name}}</span>
+                {{^}}
+                  <span class="product-title brand">{{retailer.name}}</span>
+                {{/if}}
+                <span class="product-title title">{{unbrandedName}}</span></a>
+              {{#if salePriceLabel}}
+                <span class="product-price sale">{{salePriceLabel}}</span><span class="product-price no-sale">{{priceLabel}}</span>
               {{^}}
-                <span class="product-title brand">{{retailer.name}}</span>
+                <span class="product-price">{{priceLabel}}</span>
               {{/if}}
-              <span class="product-title title">{{unbrandedName}}</span></a>
-            {{#if salePriceLabel}}
-              <span class="product-price sale">{{salePriceLabel}}</span><span class="product-price no-sale">{{priceLabel}}</span>
-            {{^}}
-              <span class="product-price">{{priceLabel}}</span>
-            {{/if}}
-          </div>
-        {{/each}}
-      </div>
-      <div class="load-more"><a href="#" id="load-more" class="btn btn-large btn-block btn-primary">load more</a><div>
-    {{/if}}
+            </div>
+          {{/each}}
+        </div>
+        <div class="load-more"><a href="#" id="load-more" class="btn btn-large btn-block btn-primary">load more</a><div>
+      {{/if}}
+    </div>
   </div>
+</div>
 </template>
 
 <template name="noresults">
